@@ -69,6 +69,7 @@ while running:
     text_rect = text_surface.get_rect()
     text_rect.center = (130, 535)
     window_surf.blit(text_surface, text_rect)
+    pygame.display.flip()
     #print(f"points{points} / games_played {games_played}")
  
     # Check for events
@@ -93,17 +94,14 @@ while running:
             # Then play the sound
             elif (buttons[1].collidepoint(event.pos)):
                 if correct_button[0]:
-                    window_surf.blit(text_surface, text_rect)
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[0] = False
-                    window_surf.blit(text_surface, text_rect)
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[0] = False
-                    window_surf.blit(text_surface, text_rect)
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
            
@@ -112,13 +110,13 @@ while running:
             # Then play the sound
             elif (buttons[2].collidepoint(event.pos)):
                 if correct_button[1]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[1] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[1] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
@@ -126,130 +124,130 @@ while running:
            
             elif (buttons[3].collidepoint(event.pos)):
                 if correct_button[2]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[2] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[2] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
  
             elif (buttons[4].collidepoint(event.pos)):
                 if correct_button[3]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[3] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[3] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
  
             elif (buttons[5].collidepoint(event.pos)):
                 if correct_button[4]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[4] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[4] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
  
             elif (buttons[6].collidepoint(event.pos)):
                 if correct_button[5]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[5] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[5] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
  
             elif (buttons[7].collidepoint(event.pos)):
                 if correct_button[6]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[6] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[6] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
  
             elif (buttons[8].collidepoint(event.pos)):
                 if correct_button[7]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[7] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[7] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
            
             elif (buttons[9].collidepoint(event.pos)):
                 if correct_button[8]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[8] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[8] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
            
             elif (buttons[10].collidepoint(event.pos)):
                 if correct_button[9]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[9] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[9] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
            
             elif (buttons[11].collidepoint(event.pos)):
                 if correct_button[10]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[10] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[10] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1
            
             elif (buttons[12].collidepoint(event.pos)):
                 if correct_button[11]:
-                    utils.draw_result(window_surf, background_thumbsup, background_sound)
+                    utils.draw_result(window_surf, background_thumbsup, background_sound, text_surface, text_rect)
                     correct_button[11] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     points += 1
                     games_played += 1
                 else:
-                    utils.draw_result(window_surf, background_thumbsdown, background_sound)
+                    utils.draw_result(window_surf, background_thumbsdown, background_sound, text_surface, text_rect)
                     correct_button[11] = False
                     correct_button = utils.play_sounds(piano_sounds, correct_button)
                     games_played += 1

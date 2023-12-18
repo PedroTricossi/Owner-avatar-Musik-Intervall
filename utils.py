@@ -4,41 +4,41 @@ import random
 import time
 from pygame import mixer
 
-# Draw the buttons Lea set the coordenates in the main.py in the screen
+# Buttons zeichnen, deren Koordinaten im main.py definiert sind
 def draw_buttons(buttons, window, color):
     for button in buttons:
         pygame.draw.rect(window, color, button)
 
-# Load inside the game all the piano sound in the folder
+# Lade alle Pianosounds in den Ordner
 def pick_sound():
-    # Create an empty list to store the piano sounds
+    # leere Liste erstellen um die Piano Sounds aufzubewahren
     piano_sounds = []
 
-    # Path to the "piano sound" folder
+    # Weg zum Ordner "Piano sounds"
     folder_path = "piano_sounds"
 
-    # Loop through all the files in the folder
+    # Schleife durch alle Dateien im Ordner
     for file_name in os.listdir(folder_path):
-        # Check if the the file is a piano sound with .mid extension
+        # checken, ob die Datei ein Piano Sound als .mid Datei ist
         if file_name.endswith(".mid"):
-            # Add the file to the list
+            # Datei zur Liste hinzufügen
             sound_path = os.path.join(folder_path, file_name)
-            # Append is add the piano sound to the list of piano sounds
+            # Piano sound zur Liste von Piano Sounds hinzufügen
             piano_sounds.append(sound_path)
 
-    # Assure that the list is in the correct order
+    # sicherstellen, dass die Reihenfolge der Liste stimmt
     piano_sounds = sorted(piano_sounds)
 
     return piano_sounds
 
-# Create a List of 12 buttons, where in the beginning all buttons are False.
-# When we have a sound played, it also set the correct button to True.
+# Eine Liste mit 12 Buttons kreieren, zu Beginn sind alle Buttons falsch (nur einer darf ja richtig sein)
+# Wenn ein Sound gespielt wird, wird der entsprechende Button als "True" abgespeichert
 def correct_values():
-    # Create an empty list to store the Buttons
+    # leere Liste erstellen um die Buttons aufzubewahren
     correct_values = []
 
     for value in range(0, 12):
-        #Set all the buttons to False
+        #Alle Buttons werden als "False" gesetzt
         correct_values.append(False)
     
     return correct_values
@@ -46,56 +46,56 @@ def correct_values():
 
 # Play the piano sound
 def play_sounds(piano_sounds, correct_button):
-    # Pick a random base note
-    # first_note_number = random.randint(0, len(piano_sounds) -1)
-    first_note_number = 0 # This line makes C3 all the base note 
+    # Zufällige Basisnote wird gesetzt (aber nur von 0-25!sonst geht Intervall über die Liste hinaus)
+    first_note_number = random.randint(0, 25)
 
-    # get the base from the list of piano sounds
+    # erste Note (= Basisnote) aus der Liste der Piano Sounds holen
     first_note = piano_sounds[first_note_number]
 
-    # Play the base note
+    # die erste Note spielen
     mixer.music.load(first_note)
     mixer.music.set_volume(1)
     mixer.music.play()
 
-    # wait for 2 secounds
+    # 2 Sekunden warten
     time.sleep(2)
 
-    # pick a random second note
-    # interval = random.randint(1, 12)
+    # zufällig eine zweite Note auswählen, diese wird durch Intervall definiert
+    interval = random.randint(1, 12)
+    print (interval) #so kann man die Lösung sehen
 
-    # LEA, YOU SHOULD CHANGE THE INTERVAL!!!!!!  
+    # den richtigen Button als "True" abspeichern
+    correct_button[interval -1] = True 
 
-    interval = 11 # This set how the base note will grow
+    second_note_number = first_note_number + interval # das Interval zur ersten Note hinzufügen
 
-    # set the correct button to True
-    correct_button[interval -1] = True # Set the correct button to True
-
-    second_note_number = first_note_number + interval # Add the interval to the base note
-
-    second_note = piano_sounds[second_note_number] # Get the second note from the list of piano sounds
+    second_note = piano_sounds[second_note_number] # die zweite Note von der Liste der Piano Sounds holen
 
 
-    # Play the second note
+    # die zweite Note abspielen
     mixer.music.load(second_note)
     mixer.music.set_volume(1)
     mixer.music.play()
 
-    # return to the game the correct button (The button that gives the correct answer)
+    # den korrekten Button dem Spiel bekanntgeben
     return correct_button
 
-# Change the background according to the button pressed
-def draw_result(window, background_win_lose, background_sound):
-    # If the correct button was pressed then the main game will say to use thumbsup
-    # Otherwise, it will say to use thumbsdown
+# den Hintergrund (je nach gedrücktem Button) wechseln
+def draw_result(window, background_win_lose, background_sound, text_surface, text_rect):
+    # wenn der richtige Button gedrückt wird -> main.py wechselt Hintergrund zu "thumbs up"
+    # sonst: "thumbsdown"
+    
     window.blit(background_win_lose, (0,0))
+    window.blit(text_surface, text_rect)
     pygame.display.flip()
     
-    # Wait 1 secound for the user to know the result
+    # 1 Sekunde warten, bevor der Spieler das Resultat weiss
     time.sleep(1)
 
-    # Change the background to sound playing background
+    # Hintergrund ändern 
+    
     window.blit(background_sound, (0,0))
+    # window.blit(text_surface, text_rect)
     pygame.display.flip()
 
     time.sleep(1)
